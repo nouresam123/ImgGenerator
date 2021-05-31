@@ -39,37 +39,3 @@ client.login(client.config.token).catch(err => {
         How_To_FIX_4: "You Can Call The Support For More Information!!"
     })
 })
-
-client.on("message", (msg) => {
-    if (msg.content === "auto-ban") {
-        if (msg.channel.type == "dm") return;
-        if (msg.author.bot) return;
-        var args = msg.content.split(" ")
-        if (args[0] === "on") {
-            db.set(`Ban_${msg.guild.id}`, "on")
-            msg.channel.send(
-                new MessageEmbed()
-                .setAuthor("✅ | Done", msg.author.avatarURL({ dynamic: true }))
-                .setFooter("Requested By: " + msg.author.tag, msg.author.avatarURL({ dynamic: true }))
-                .setColor("GREEN")
-                .setThumbnail(msg.author.avatarURL({ dynamic: true }))
-                .setTimestamp()
-                .setDescription("** ✅ | Done Make Auto Ban `ON` **")
-            )
-        } else if (args[0] === "off") {
-            db.set(`Ban_${msg.guild.id}`, "off")
-            msg.channel.send(
-                new MessageEmbed()
-                .setAuthor("✅ | Done", msg.author.avatarURL({ dynamic: true }))
-                .setFooter("Requested By: " + msg.author.tag, msg.author.avatarURL({ dynamic: true }))
-                .setColor("GREEN")
-                .setThumbnail(msg.author.avatarURL({ dynamic: true }))
-                .setTimestamp()
-                .setDescription("** ✅ | Done Make Auto Ban `OFF` **")
-            )
-        } else {
-            msg.channel.send('`on` OR `off`')
-        }
-        s
-    }
-})
